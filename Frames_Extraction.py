@@ -1,13 +1,13 @@
 import cv2
 import os
 import numpy as np
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 import mediapipe as mp
-from moviepy.video.io.VideoFileClip import VideoFileClip
+#from moviepy.video.io.VideoFileClip import VideoFileClip
 from tensorflow.keras.models import load_model
 
-video_path = "C:\\Users\\Keerthi Mupparaju\\Downloads\\Adjectives_1of8\\Adjectives\\8. Blind\\MVI_9855.MOV"
-output_folder = "C:\\Users\\Keerthi Mupparaju\\Desktop\\output"
+#video_path = "C:\\Users\\Keerthi Mupparaju\\Downloads\\Adjectives_1of8\\Adjectives\\8. Blind\\MVI_9855.MOV"
+#output_folder = "C:\\Users\\nanib\\Desktop\\New folder"
 mp_holistic = mp.solutions.holistic  # Holistic model
 
 
@@ -34,35 +34,6 @@ def extract_features(results):
     
 
 
-VIDEO_FOLDER = "C:\\Users\\sailo\\OneDrive - Vasireddy Venkatadri Institute of Technology\\Desktop\\Sign Language Project\\Dummy1 data"
 
-
-
-def extract_40_frames(VIDEO_FOLDER):
-    clip = VideoFileClip(VIDEO_FOLDER)
-    duration = clip.duration
-    frame_indices = np.linspace(0, duration - 0.01, 40, endpoint=False)  # Calculate 40 evenly spaced frame indices
-    frames = []
-
-    for t in frame_indices:
-        frame = clip.get_frame(t)
-        frames.append(frame)
-
-    clip.reader.close()
-    return frames
-cap = cv2.VideoCapture(0)
-
-with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-
-    os.makedirs(output_folder, exist_ok=True)
-
-    # Extract 40 frames from the video
-    extracted_frames = extract_40_frames(video_path)
-
-    for idx, frame in enumerate(extracted_frames):
-        image,results = mediapipe_detection(frame, holistic)
-        keypoints = extract_features(results)
-        npy_path = os.path.join(output_folder, f"frame_{idx:05d}.npy")
-        np.save(npy_path, keypoints)
 
 

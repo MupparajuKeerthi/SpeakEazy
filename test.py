@@ -3,9 +3,8 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from Frames_Extraction import mediapipe_detection, extract_features
 import mediapipe as mp
-
-# Load the pre-trained model
-def meathod():
+def method():
+    # Load the pre-trained model
     model = load_model("action75a.h5")
 
     # Initialize MediaPipe holistic model
@@ -69,4 +68,3 @@ def meathod():
                 break
         cap.release()
         cv2.destroyAllWindows()
-
