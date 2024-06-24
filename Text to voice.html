@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpeakEasy</title>
+
+</head>
+<body>
+  <div class="menu-bar">
+    <h1 class="logo">Speak<span>Easy</span></h1>
+    <ul class="hello">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">Features<i class="fas fa-caret-down"></i></a>
+          <div class="dropdown-menu">
+              <ul>
+                <li><a href="VoiceToText.html">Voice to Text</a></li>
+                <li><a href="Text to voice.html">Text to Voice</a></li>
+                <li><a href="GestureToVoice.html">Gesture to Voice</a></li>
+                <li><a href="#">Voice to Gesture</a></li>
+                <li><a href="Gesture to Text.html">Gesture to Text</a></li>
+                <li><a href="#">Text to Gesture</a></li>
+              </ul>
+            </div>
+      </li>
+    </li>
+    <li><a href="login.html">Sign In</a>
+    </li>
+    <li><a href="logon.html">Register</a></li>
+  </ul>
+    </ul>
+  </div>
+
+<h1>Text to Speech Conversion</h1>
+
+<textarea id="text-to-convert" rows="4" cols="50"></textarea><br>
+<input type="file" id="file-input" accept=".txt"><br>
+
+<button onclick="speak()">Speak</button>
+<button onclick="downloadSpeech()">Download Speech</button>
+
+<script>
+function speak() {
+  var text = document.getElementById("text-to-convert").value;
+  if (text.trim() !== "") {
+    var speechSynthesis = window.speechSynthesis;
+    var speechUtterance = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speechUtterance);
+  } else {
+    alert("Please enter some text or load a text file.");
+  }
+}
+
+function loadFile() {
+  var fileInput = document.getElementById('file-input');
+  var file = fileInput.files[0];
+
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    var text = event.target.result;
+    document.getElementById('text-to-convert').value = text;
+  };
+
+  reader.readAsText(file);
+}
+
+function downloadSpeech() {
+  var text = document.getElementById("text-to-convert").value;
+  if (text.trim() !== "") {
+    var blob = new Blob([text], { type: 'text/plain' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'speech.mp4';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } else {
+    alert("Please enter some text or load a text file.");
+  }
+}
+</script>
+
+</body>
+</html>
+
+<style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+    .menu-bar {
+    background-color: #51700f;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .menu-bar h1{
+    font-family:Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .logo {
+  color: #ffffff;
+  font-size: 30px;
+}
+.logo span {
+  color: #ffffff;
+}
+  .menu-bar h1{
+    margin-left: 20px;
+  }
+  .menu-bar ul {  
+    list-style: none;
+    display: flex;
+  }
+  .menu-bar ul li {
+    /* width: 120px; */
+    padding: 10px 30px;
+    /* text-align: center; */
+    position: relative;
+  }
+  .menu-bar ul li a {
+    font-size: 20px;
+    color: #D1E2C4;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .menu-bar ul li a:hover {
+    color: #1c3807;
+  }
+  /* dropdown menu style */
+  .dropdown-menu {
+    display: none;
+    border-radius: 10px;
+  }
+  .menu-bar ul li:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #819f42;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul {
+    display: block;
+    margin: 10px;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul li {
+    width: 150px;
+    padding: 10px;
+  }
+
+  h1 {
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+textarea {
+  width: 80%;
+  height: 150px;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+input[type="file"], button {
+  margin: 10px;
+  padding: 8px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+button {
+  background-color: #141c8b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #4845a0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+  }
+
+  .menu-bar {
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .menu-bar h1{
+    font-family:Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .logo {
+  color: #000000;
+  font-size: 30px;
+}
+.logo span {
+  color: #2d15e0;
+}
+  .menu-bar h1{
+    margin-left: 20px;
+  }
+  .menu-bar ul {
+    list-style: none;
+    display: flex;
+  }
+  .menu-bar ul li {
+    /* width: 120px; */
+    padding: 10px 30px;
+    /* text-align: center; */
+    position: relative;
+  }
+  .menu-bar ul li a {
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .menu-bar ul li a:hover {
+    color: #3300ff;
+  }
+  /* dropdown menu style */
+  .dropdown-menu {
+    display: none;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .menu-bar ul li:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    align-items: center;
+    left: 0;
+    top: 100%;
+    background-color: #ffffff;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul {
+    display: block;
+    margin: 10px;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul li {
+    width: 150px;
+    padding: 10px;
+  }
+  .hello{
+    text-align: center;
+  }
+  </style>
+
