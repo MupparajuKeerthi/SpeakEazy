@@ -39,7 +39,7 @@
   
   <!--<input type="file"   accept="video/*"  class="upload-btn" onclick="document.getElementById('fileInput').click()">-->
     <div id="fileName"></div>
-    <button class="convert-btn" onclick="convertVideo()">Convert</button>
+    <button class="convert-btn" id='9876654'>Convert</button>
     <div id="outputText"></div>
     <a id="downloadLink" class="download-btn" download="output.txt" style="display: none;">Download Text</a>
   </div>
@@ -109,42 +109,9 @@
           <div class="text-footer-credits" style="color: beige; margin-top: 60px;">© 2018 SpeakEasy Inc, All rights reserved.</div>
       </div>
    </footer>
-  <script>
-        function convertVideo() {
-            var fileInput = document.getElementById('fileInput');
-            var fileNameDisplay = document.getElementById('fileName');
-            var outputText = document.getElementById('outputText');
-            var downloadLink = document.getElementById('downloadLink');
+   <script src="./GestureToText.js">
 
-            if (fileInput.files.length > 0) {
-                var file = fileInput.files[0];
-                fileNameDisplay.textContent = 'Selected File: ' + file.name;
-
-                // Send video file to server for processing
-                var formData = new FormData();
-                formData.append('file', file);
-
-                fetch('/process_video', {
-                    method: 'POST',
-                    body: formData
-                  })
-                  .then(response => response.json())  // Parse JSON response
-                  .then(data => {
-                    outputText.textContent = data.prediction;
-                    downloadLink.href = URL.createObjectURL(new Blob([data.prediction], {type: 'text/plain'}));
-                    downloadLink.style.display = 'block';
-                  })
-                  .catch(error => {
-                    console.error('Error:', error);
-             });
-
-                
-            } else {
-                alert('Please choose a video file first.');
-            }
-        }
-
-  </script>
+   </script>
   </body>
   </html>
 

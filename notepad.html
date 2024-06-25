@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpeakEazy</title>
+<link rel="stylesheet" href="home style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+  <div class="menu-bar">
+    <h1 class="logo">Speak<span>Eazy</span></h1>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">Features<i class="fas fa-caret-down"></i></a>
+          <div class="dropdown-menu">
+              <ul>
+                <li><a href="VoiceToText.html">Voice to Text</a></li>
+                <li><a href="Text to voice.html">Text to Voice</a></li>
+                <li><a href="GestureToVoice.html">Gesture to Voice</a></li>
+                <li><a href="#">Voice to Gesture</a></li>
+                <li><a href="Gesture to Text.html">Gesture to Text</a></li>
+                <li><a href="#">Text to Gesture</a></li>
+              </ul>
+            </div>
+      </li>
+      <li><a href="login.html">Sign In</a>
+      </li>
+      <li><a href="logon.html">Register</a></li>
+    </ul>
+  </div>
+  <h1>Notepad</h1>
+  <div class="notepad-container">
+    <textarea class="notepad" placeholder="Start typing..."></textarea>
+</div>
+<script>document.addEventListener("DOMContentLoaded", function() {
+    const notepad = document.querySelector(".notepad");
+
+    notepad.addEventListener("input", function() {
+        // Additional functionalities can be added here, such as saving to local storage
+        localStorage.setItem("notepadContent", notepad.value);
+    });
+
+    // Load saved content
+    if (localStorage.getItem("notepadContent")) {
+        notepad.value = localStorage.getItem("notepadContent");
+    }
+});</script>
+</body>
+</html>
+
+<style>
+    /* styles.css */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+
+  .menu-bar {
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .menu-bar h1{
+    font-family:Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .logo {
+  color: #000000;
+  font-size: 30px;
+}
+.logo span {
+  color: #2e39b4;
+}
+  .menu-bar h1{
+    margin-left: 20px;
+  }
+  .menu-bar ul {
+    list-style: none;
+    display: flex;
+  }
+  .menu-bar ul li {
+    /* width: 120px; */
+    padding: 10px 30px;
+    /* text-align: center; */
+    position: relative;
+  }
+  .menu-bar ul li a {
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .menu-bar ul li a:hover {
+    color: #1e00ff;
+  }
+  /* dropdown menu style */
+  .dropdown-menu {
+    display: none;
+    border-radius: 10px;
+  }
+  .menu-bar ul li:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #ffffff;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul {
+    display: block;
+    margin: 10px;
+  }
+  .menu-bar ul li:hover .dropdown-menu ul li {
+    width: 150px;
+    padding: 10px;
+  }
+  .notepad-container {
+    width: 80%;
+    max-width: 800px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 20px auto;
+    display: block;
+}
+
+
+.notepad {
+    width: 100%;
+    height: 80vh;
+    padding: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    background: #fafafa;
+}
+
+.notepad::placeholder {
+    color: #cccccc;
+}
+h1{
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+</style>
