@@ -73,7 +73,7 @@
 
 ## Contributors
 
-- Muppraju Keerthi
+- Mupparaju Keerthi(https://github.com/MupparajuKeerthi)
 - Mancineella Sai Lokesh
 - P.V.Lokesh
 - Manchala Nandini
