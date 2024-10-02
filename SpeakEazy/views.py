@@ -54,11 +54,8 @@ def upload_video(request):
 
         # Call your custom function to process the video and get the prediction
         prediction = process_video(video_file_instance.video_file.path)
-
-        # Delete the video file after processing
         if os.path.exists(video_file_instance.video_file.path):
             os.remove(video_file_instance.video_file.path)
-
         # Return the prediction as a JSON response
         return JsonResponse({'prediction': prediction})
 
